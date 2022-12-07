@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Album</title>
+    <link rel="stylesheet" href="../CSS_Du_An2.css">
+</head>
+
+<body>
+<img style="width: 100%" src="../img/Anh_phu.png">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <div style="background:bisque" class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="tiengAnh.html">TRANG
+                    CHỦ</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Thư viện</a>
+            </li>
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="hoc_phi.html">Học phí</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown">
+                        Các bài học tiếng anh tuyển chọn
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="bai%20hat%20abc~1.mp4">Bài hát ABC</a>
+                        <a class="dropdown-item" href="dem%201-10~1.mp4">Học đếm số từ 1 đến 10 </a>
+                        <a class="dropdown-item" href="trai%20cay~1.mp4">Học tiếng Anh qua các loại trái cây</a>
+                        <a class="dropdown-item" href="../video/con_vat.mp4">Dạy Bé Học Các Con Vật</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+                        Chọn lớp cho bé</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" target="_blank"
+                           href="https://docs.google.com/forms/d/1KfIsT49MFDhnNdB4TGd01FYZqPmA1ku4Oa0zl57g-28/edit">Lớp
+                            3+4
+                            tuổi</a>
+                        <a class="dropdown-item" target="_blank"
+                           href="https://docs.google.com/forms/d/1Kz8LFFxS22IFwrjsnlwVyjI3exzXRDnMYK7_hsRFeX8/edit">Lớp
+                            5+6
+                            tuổi</a>
+                        <a class="dropdown-item" target="_blank"
+                           href="https://docs.google.com/forms/d/12JCcgCc6-IAesAQaHltCCts_6CEFASOtLfLr_cY_3Sk/edit">Lớp
+                            trên
+                            7 tuổi</a>
+                        <a class="dropdown-item" target="_blank"
+                           href="https://docs.google.com/forms/d/1C1N9_N4qoiZAZM2c7qbA_PHEc7N7He-ndJusJvnga74/edit">Đăng
+                            ký
+                            nguyện vọng riêng</a>
+                    </div>
+                </li>
+
+            </ul>
+        </ul>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button type="submit"><a href="chucNangMoi.html">Search</a></button>
+        </form>
+    </div>
+
+</nav>
+
+<h2 align="center" style="color: #FE4365">Kho ảnh bé! Các ba mẹ có thể chia sẻ ảnh của bé tại đây</h2>
+<h3 align="center" style="color: blue">Trang Julia giúp các mẹ lưu giữ những khoảnh khắc đáng yêu của các bé</h3>
+
+<ul id="hienthiul" align="center" style="font-size: large">
+    <td>Link ảnh: <input id="inputImg" placeholder="Địa chỉ hình ảnh"></td>
+    <td>Tên bé : <input id="inputName" placeholder="Tối đa 6 ký tự.VD: Su, Bon,..."></td>
+    <td>Năm sinh: <input id="inputAge" placeholder="VD: 2015(4 ký tự số)"></td>
+    <button onclick="add()">ADD</button>
+</ul>
+<div class="cuonAnh">
+    <h4 class="h4" align="center">Kho ảnh các bé</h4>
+    <table id="show" width="400"></table>
+</div>
+<img class="anh12345" src="../img/18-02-2022_10_12_30_22.jpg">
+</body>
+<script>
+    let names = [["https://scontent-hkt1-2.xx.fbcdn.net/v/t39.30808-6/302120946_2900450690100145_3279831021090727576_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=730e14&_nc_ohc=y7EtoKasigEAX_6-k6d&tn=wQs_cn_paNCXJcHu&_nc_ht=scontent-hkt1-2.xx&oh=00_AT8lKO8tgFLrx87lnuzYhB4NVhaofZmCedr2ipuTl9d6FQ&oe=635CBF82", "Min", 2019],
+        ["https://scontent-hkt1-2.xx.fbcdn.net/v/t39.30808-6/200489821_2551964398282111_2861978850552875040_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=mfHrTuG5pvcAX8DWBbC&_nc_ht=scontent-hkt1-2.xx&oh=00_AT9bcRoad0zSHhGf6ZwE_QA8AVNg82ZCyhrcxGsskJ1UgA&oe=635D13EC", "Trang", 1996]];
+
+    function show() {
+        let str = "";
+        for (let i = 0; i < names.length; i++) {
+            str += `<tr>
+        <td><img src="${names[i][0]}" width="200" height="150"></td>
+        <td>${names[i][1]}</td>
+        <td>${names[i][2]}</td>
+        <td><button onclick="edit(${i})">Edit</button></td>
+        <td><button id="delete" onclick="xoa(${i})">Delete</button></td>
+        <td><button onclick=""><a href="chucNangMoi.html">Truy cập album</a></button></td>
+                    </tr>`
+        }
+        document.getElementById("show").innerHTML = str;
+    }
+
+    show();
+
+    function edit(index) {
+        let img = prompt("Nhập link ảnh muốn sửa");
+        let name = prompt("Nhập tên muốn sửa");
+        let age = prompt("Nhập tuổi muốn sửa");
+        if (img.trim() === "" || name.trim() === "" || age.trim() === "") {
+            alert("Xin vui lòng nhập đầy đủ thông tin");
+        } else{
+            names.splice(index, 1, [img, name, age]);
+        }
+        show();
+    }
+
+    function traVe() {
+        document.getElementById("inputImg").value = "";
+        document.getElementById("inputName").value = "";
+        document.getElementById("inputAge").value = "";
+    }
+
+    function add() {
+        let img = document.getElementById("inputImg").value;
+        let name = document.getElementById("inputName").value;
+        let age = document.getElementById("inputAge").value;
+        if (img.trim() === "" || name.trim() === "" || age.trim() === "") {
+            alert("Xin vui lòng nhập đầy đủ thông tin");
+        } else {
+            names.push([img, name, age]);
+        }
+        show();
+        traVe();
+    }
+
+    function xoa(index) {
+        let xacnhanxoa = confirm("Bạn có chắc chắn muốn xóa???");
+        if (xacnhanxoa === true){
+            names.splice(index, 1);
+        }
+        show();
+    }
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+</html>
